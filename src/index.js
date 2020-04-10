@@ -1,4 +1,3 @@
 import Card from '@models/card';
-import './styles/styles.css';
-import './assets/images/star-win.svg';
+import './sass/styles.scss';
 // https://www.youtube.com/watch?v=eSaF8NXeNsA&vl=en-GB
