@@ -58,7 +58,7 @@ module.exports = {
   mode: 'development',
   entry: {
     main: ['@babel/polyfill', './index.js'],
-    analytics: './js/analytics.js',
+    analytics: './utils/analytics.js',
   },
   output: {
     filename: filename('js'),
@@ -69,7 +69,8 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@models': path.resolve(__dirname, './src/models'),
-      '@assets': path.resolve(__dirname, './src/assets'),
+      '@data': path.resolve(__dirname, './src/data'),
+      '@utils': path.resolve(__dirname, './src/utils'),
     },
   },
   optimization: optimization(),
