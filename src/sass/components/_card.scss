@@ -1,0 +1,213 @@
+$border-width: 8px;
+
+.card-container{
+  position: relative;
+  width: 270px;
+  height:370px;
+  perspective: 600px;
+  user-select: none;
+  margin: 40px;
+
+  @include font($card-text-size, $card-text-size, $font-weight-bold);
+  color: $card-text-color;
+
+  animation: cardAppear 1.4s forwards;
+}
+.card {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(180deg);
+  &.card_flip {
+    animation: cardFlip .275s forwards linear;
+  }
+  &.card_unflip {
+    animation: cardUnflip .275s forwards linear;
+  }  
+}
+
+.card__bump-container {
+  height: 90px;
+  width: 90px;
+  position: absolute;
+  top: -30px;
+  border-radius: 10px;
+  border: $border-width solid $card-border-color;   
+}
+.card__bump-image {
+  z-index: 10;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.bump-image{
+  position: relative;
+  z-index: 6;
+  padding: 5px;
+  display: block;
+  width: auto;
+  height: 100%;   
+  margin: auto; 
+}
+// .face__front .bump-image{
+//   //margin-left: 5px;
+// }
+// .face__back .bump-image{
+//   margin-right: 5px;
+// }
+
+.face__front .card__bump-container  { 
+  left: -30px;
+  background-color: $card-front-accent-color;
+}
+.face__back .card__bump-container  {
+  right: -30px;
+  background-color: $card-back-accent-color;
+}
+
+.card__category {
+  z-index: 4;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  display: flex;
+  
+  justify-content: left; 
+  align-items: center;
+}
+.face__back .card__category {
+  padding-left: 10px;
+}
+.face__front .card__category {
+  padding-left: 70px;
+}
+
+.card__name-container{
+  z-index: 4;
+  width: 100%;
+  height: 70px;
+  border: 2px solid rgb(100, 100, 100);
+  @include font($card-text-size, $card-text-size, $font-weight-bold);
+  border-radius: 8px; 
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.card__image-container{  
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.7);
+  padding: 10px;
+}
+
+.card__image{
+  display: block;
+  width: auto;
+  height: 100%;
+  margin: auto;
+  background-size: contain; 
+}
+
+.card__face {
+  position: absolute;
+  z-index: 4;  
+  box-shadow: 0 0 10px 5px #838383af;
+  height: 360px;
+  width: 260px;
+  border-radius: 10px;
+  border: $border-width solid $card-border-color;
+  background-color: $card-border-color;
+}
+
+.face {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;  
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+
+  &__front{  
+    z-index: 4;
+    @include gradient(
+      $card-front-gradient1-color,
+      $card-front-gradient2-color,
+      $card-front-gradient3-color,
+      $card-front-gradient4-color);  
+
+    .card__category{
+      background-color: $card-front-accent-color;
+    }
+    .card__name-container{
+      background-color: $card-front-accent-color;
+    }
+    
+  }
+
+  &__back {     
+    
+    @include gradient(
+      $card-back-gradient1-color,
+      $card-back-gradient2-color,
+      $card-back-gradient3-color,
+      $card-back-gradient4-color);    
+
+    transform: rotateY(180deg);
+
+    .card__category{
+      background-color: $card-back-accent-color;
+    }
+    .card__name-container{
+      background-color: $card-back-accent-color;
+    }
+  }
+}
+
+// animation
+
+@keyframes cardAppear {
+  0% {
+    transform: rotate3d(0,0,1,15deg) translate3d(0,-100vh,0);
+  }
+  40% {
+    transform: rotate3d(0,0,0,0deg) translate3d(0,0,0);
+  }
+  80% {
+    transform: rotate3d(0,0,0,0deg) translate3d(0,0,0) scale3d(1,1,1);
+  }  
+}
+
+@keyframes cardFlip {
+  0% {
+    transform: rotateZ(0deg) rotateY(180deg);
+  } 
+  50% {
+    transform: rotateZ(-10deg) rotateY(90deg);
+  }
+  100% {
+    transform: rotateZ(0deg) rotateY(0deg);
+  }  
+}
+
+@keyframes cardUnflip {
+  0% {
+    transform: rotateZ(0deg) rotateY(0deg);
+  } 
+  50% {
+    transform: rotateZ(-10deg) rotateY(90deg);
+  }
+  100% {
+    transform: rotateZ(0deg) rotateY(180deg);
+  }  
+}

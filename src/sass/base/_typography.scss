@@ -1,0 +1,12 @@
+$base-font-family: 'Roboto', sans-serif;
+$base-font-size: 10px;
+
+$font-weight-light: 300;
+$font-weight-normal: normal;
+$font-weight-bold: bold;
+$font-weight-black: 900;
+
+html {
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+}

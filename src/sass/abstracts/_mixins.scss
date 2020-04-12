@@ -1,0 +1,15 @@
+@mixin font ($size, $height, $weight, $style: normal) {
+  font-size : $size;
+  font-style : $style;
+  font-weight: $weight;
+  line-height: $height;
+};
+
+@mixin gradient($color1, $color2, $color3, $color4) {
+  background: $color1;
+  background: linear-gradient(135deg, 
+    $color1 0% 20%,
+    $color2 20% 45%,
+    $color3 45% 70%,
+    $color4 70%);
+};
