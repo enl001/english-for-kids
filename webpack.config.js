@@ -35,7 +35,7 @@ const cssLoaders = (extLoader) => {
         reloadAll: true,
       },
     },
-    'css-loader'];
+    'css-loader?url=false'];
   if (extLoader) loaders.push(extLoader);
   return loaders;
 };
@@ -71,6 +71,7 @@ module.exports = {
       '@models': path.resolve(__dirname, './src/models'),
       '@data': path.resolve(__dirname, './src/data'),
       '@utils': path.resolve(__dirname, './src/utils'),
+      '@components': path.resolve(__dirname, './src/components'),
     },
   },
   optimization: optimization(),
@@ -94,6 +95,11 @@ module.exports = {
       {
         from: path.resolve(__dirname, './src/assets'),
         to: path.resolve(__dirname, 'dist/assets'),
+      },
+      {
+        from: path.resolve(__dirname, './src/components'),
+        test: /\.html$/,
+        to: path.resolve(__dirname, 'dist/assets/templates'),
       },
     ]),
     new MiniCssExtractPlugin({

@@ -1,12 +1,14 @@
 export default class Card {
   constructor(
     category = 'category',
+    categoryTranslation = 'categoryTranslation',
     word = 'word',
     translation = 'translation',
     images = ['default.png'],
     pronunciations = ['default-1.mp3', 'default-2.mp3'],
   ) {
     this.category = category;
+    this.categoryTranslation = categoryTranslation;
     this.word = word;
     this.translation = translation;
     this.images = images;

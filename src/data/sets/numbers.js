@@ -6,9 +6,11 @@ import Card from '@models/card.js';
 // image = 'default.png',
 // pronunciations = ['default-m.mp3', 'default-f.mp3']
 const category = 'numbers';
+const categoryTranslation = 'цифры';
 export default [
   new Card(
     category,
+    categoryTranslation,
     'numbers',
     'цифры',
     ['numbers/numbers.png'],
@@ -16,6 +18,7 @@ export default [
   ),
   new Card(
     category,
+    categoryTranslation,
     'zero',
     'ноль',
     ['numbers/zero-1.png', 'numbers/zero-2.png'],
@@ -23,6 +26,7 @@ export default [
   ),
   new Card(
     category,
+    categoryTranslation,
     'one',
     'один',
     ['numbers/one-1.png', 'numbers/one-2.png'],
@@ -30,6 +34,7 @@ export default [
   ),
   new Card(
     category,
+    categoryTranslation,
     'two',
     'два',
     ['numbers/two-1.png', 'numbers/two-2.png'],
@@ -37,6 +42,7 @@ export default [
   ),
   new Card(
     category,
+    categoryTranslation,
     'three',
     'три',
     ['numbers/three-1.png', 'numbers/three-2.png'],
@@ -44,6 +50,7 @@ export default [
   ),
   new Card(
     category,
+    categoryTranslation,
     'four',
     'четыре',
     ['numbers/four-1.png', 'numbers/four-2.png'],
@@ -51,6 +58,7 @@ export default [
   ),
   new Card(
     category,
+    categoryTranslation,
     'five',
     'пять',
     ['numbers/five-1.png', 'numbers/five-2.png'],
@@ -58,6 +66,7 @@ export default [
   ),
   new Card(
     category,
+    categoryTranslation,
     'six',
     'шесть',
     ['numbers/six-1.png', 'numbers/six-2.png'],
@@ -65,6 +74,7 @@ export default [
   ),
   new Card(
     category,
+    categoryTranslation,
     'seven',
     'семь',
     ['numbers/seven-1.png', 'numbers/seven-2.png'],
@@ -72,6 +82,7 @@ export default [
   ),
   new Card(
     category,
+    categoryTranslation,
     'eight',
     'восемь',
     ['numbers/eight-1.png', 'numbers/eight-2.png'],
@@ -79,6 +90,7 @@ export default [
   ),
   new Card(
     category,
+    categoryTranslation,
     'nine',
     'девять',
     ['numbers/nine-1.png', 'numbers/nine-2.png'],

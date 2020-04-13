@@ -3,10 +3,10 @@ $border-width: 8px;
 .card-container{
   position: relative;
   width: 270px;
-  height:370px;
+  height:360px;
   perspective: 600px;
   user-select: none;
-  margin: 40px;
+  margin: 25px;
 
   @include font($card-text-size, $card-text-size, $font-weight-bold);
   color: $card-text-color;
@@ -14,11 +14,16 @@ $border-width: 8px;
   animation: cardAppear 1.4s forwards;
 }
 .card {
+  position: relative;
   height: 100%;
   width: 100%;
-  position: relative;
   transform-style: preserve-3d;
   transform: rotateY(180deg);
+
+  
+
+  cursor: pointer;
+
   &.card_flip {
     animation: cardFlip .275s forwards linear;
   }
@@ -28,34 +33,34 @@ $border-width: 8px;
 }
 
 .card__bump-container {
+  position: absolute;
+  
   height: 90px;
   width: 90px;
-  position: absolute;
   top: -30px;
   border-radius: 10px;
   border: $border-width solid $card-border-color;   
 }
 .card__bump-image {
-  z-index: 10;
-  position: relative;
-  width: 80px;
-  height: 80px;
+  position: absolute;;
+  z-index: 2;
+  width: 75px;
+  height: 75px;
 }
 .bump-image{
-  position: relative;
-  z-index: 6;
-  padding: 5px;
-  display: block;
-  width: auto;
+  position: absolute;
+  z-index: 2;      
+  width: 100%;
   height: 100%;   
-  margin: auto; 
+  background-image: url(assets/images/owl_train.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  &_test {
+    background-image: url(assets/images/owl_test.png);
+  }
 }
-// .face__front .bump-image{
-//   //margin-left: 5px;
-// }
-// .face__back .bump-image{
-//   margin-right: 5px;
-// }
 
 .face__front .card__bump-container  { 
   left: -30px;
@@ -66,9 +71,8 @@ $border-width: 8px;
   background-color: $card-back-accent-color;
 }
 
-.card__category {
-  z-index: 4;
-  position: relative;
+.card__category {  
+  position: relative;  
   width: 100%;
   height: 60px;
   border-top-left-radius: 8px;
@@ -82,13 +86,13 @@ $border-width: 8px;
   padding-left: 10px;
 }
 .face__front .card__category {
-  padding-left: 70px;
+  padding-left: 60px;
 }
 
 .card__name-container{
-  z-index: 4;
+  position: relative;  
   width: 100%;
-  height: 70px;
+  height: 60px;
   border: 2px solid rgb(100, 100, 100);
   @include font($card-text-size, $card-text-size, $font-weight-bold);
   border-radius: 8px; 
@@ -98,7 +102,7 @@ $border-width: 8px;
 }
 
 .card__image-container{  
-  position: relative;
+  position: relative;  
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -114,57 +118,82 @@ $border-width: 8px;
   background-size: contain; 
 }
 
-.card__face {
+.rotate-image-container {
   position: absolute;
-  z-index: 4;  
-  box-shadow: 0 0 10px 5px #838383af;
-  height: 360px;
-  width: 260px;
-  border-radius: 10px;
-  border: $border-width solid $card-border-color;
-  background-color: $card-border-color;
+  
+  right: 0;
+  top: 225px;
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
 }
 
-.face {
+.rotate-image{
+  z-index: 5;
+  width: 100%;
+  height: 100%;   
+  background-image: url(assets/images/flip.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;  
+  @extend %transition;
+  opacity: 0.6;
+  &:hover{
+    opacity: 1;
+    @extend %transition;
+  }
+
+}
+
+.face {   
   position: absolute;
   z-index: 4;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  height: 350px;
+  width: 260px;
+  
+  @extend %transition;
+  box-shadow: 0 0 10px 5px #838383af;
+  &:hover{
+    box-shadow: 0 0 12px 8px #838383af;
+    top:-2px;
+    @extend %transition;
+  }
+
+
+  border-radius: 10px;
+  border: $border-width solid $card-border-color;
+  background-color: $card-border-color;
+
   display: flex;
   flex-direction: column;  
   justify-content: space-between;
   align-items: center;
   border-radius: 8px;
+  backface-visibility: hidden;
 
-  &__front{  
-    z-index: 4;
+  &__front{
+    
     @include gradient(
       $card-front-gradient1-color,
       $card-front-gradient2-color,
       $card-front-gradient3-color,
-      $card-front-gradient4-color);  
-
+      $card-front-gradient4-color);
     .card__category{
       background-color: $card-front-accent-color;
     }
     .card__name-container{
       background-color: $card-front-accent-color;
-    }
-    
+    }    
   }
-
-  &__back {     
-    
+  &__back {    
+    transform: rotateY(180deg);
     @include gradient(
       $card-back-gradient1-color,
       $card-back-gradient2-color,
       $card-back-gradient3-color,
-      $card-back-gradient4-color);    
-
-    transform: rotateY(180deg);
-
+      $card-back-gradient4-color); 
     .card__category{
       background-color: $card-back-accent-color;
     }
@@ -193,7 +222,7 @@ $border-width: 8px;
     transform: rotateZ(0deg) rotateY(180deg);
   } 
   50% {
-    transform: rotateZ(-10deg) rotateY(90deg);
+    transform: rotateZ(-5deg) rotateY(90deg);
   }
   100% {
     transform: rotateZ(0deg) rotateY(0deg);
@@ -205,7 +234,7 @@ $border-width: 8px;
     transform: rotateZ(0deg) rotateY(0deg);
   } 
   50% {
-    transform: rotateZ(-10deg) rotateY(90deg);
+    transform: rotateZ(-5deg) rotateY(90deg);
   }
   100% {
     transform: rotateZ(0deg) rotateY(180deg);
