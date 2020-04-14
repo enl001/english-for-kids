@@ -13,3 +13,24 @@
     $color3 45% 70%,
     $color4 70%);
 };
+
+@mixin headerGradient($color1, $color2, $color3, $color4) {
+  background: $color1;
+  background: linear-gradient(135deg, 
+    $color1 0% 25%,
+    $color2 25% 40%,
+    $color3 40% 55%,
+    $color2 55% 70%,
+    $color4 70%);
+};
+
+
+@mixin media-desktop {
+  @media (max-width: $desktop-width ) {@content;}
+}
+@mixin media-tablet {
+  @media (max-width: $tablet-width ) {@content;}
+}
+@mixin media-mobile {
+  @media (max-width: $mobile-width ) {@content;}
+}

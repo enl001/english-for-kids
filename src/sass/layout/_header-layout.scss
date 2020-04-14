@@ -1,0 +1,36 @@
+.header {
+  position: fixed;
+  top: 0;
+  max-width: $desktop-width; 
+  width: 100%;
+  z-index: 999;
+}
+.main{
+  margin-top: 110px;
+}
+
+.header-layout {
+  position: relative;
+  height: 90px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+
+  @include headerGradient(
+      $card-back-gradient1-color,
+      $card-back-gradient2-color,
+      $card-back-gradient3-color,
+      $card-back-gradient4-color);
+
+  border-bottom: 10px solid $header-accent-color; 
+  box-shadow: 0 20px 10px -10px #838383af;
+
+
+
+}

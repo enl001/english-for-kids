@@ -1,7 +1,7 @@
 /* eslint-disable no-plusplus */
 import numbersSet from './sets/numbers';
 
-const maxNumOfCards = 6;
+const maxNumOfCards = 8;
 
 /* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
 export default {

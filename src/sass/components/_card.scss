@@ -1,11 +1,10 @@
 $border-width: 8px;
 
-.card-container{
+.card-container {
   position: relative;
   width: 270px;
-  height:360px;
+  height: 360px;
   perspective: 600px;
-  user-select: none;
   margin: 25px;
 
   @include font($card-text-size, $card-text-size, $font-weight-bold);
@@ -19,67 +18,64 @@ $border-width: 8px;
   width: 100%;
   transform-style: preserve-3d;
   transform: rotateY(180deg);
-
-  
+  @extend %userselect;
 
   cursor: pointer;
 
   &.card_flip {
-    animation: cardFlip .275s forwards linear;
+    animation: cardFlip 0.275s forwards linear;
   }
   &.card_unflip {
-    animation: cardUnflip .275s forwards linear;
-  }  
+    animation: cardUnflip 0.275s forwards linear;
+  }
 }
 
 .card__bump-container {
   position: absolute;
-  
+
   height: 90px;
   width: 90px;
   top: -30px;
   border-radius: 10px;
-  border: $border-width solid $card-border-color;   
+  border: $border-width solid $card-border-color;
 }
 .card__bump-image {
-  position: absolute;;
+  position: absolute;
   z-index: 2;
   width: 75px;
   height: 75px;
 }
-.bump-image{
+.bump-image {
   position: absolute;
-  z-index: 2;      
+  z-index: 2;
   width: 100%;
-  height: 100%;   
+  height: 100%;
   background-image: url(assets/images/owl_train.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-
-  &_test {
-    background-image: url(assets/images/owl_test.png);
-  }
+  @extend %transition;
+ 
 }
 
-.face__front .card__bump-container  { 
+.face__front .card__bump-container {
   left: -30px;
   background-color: $card-front-accent-color;
 }
-.face__back .card__bump-container  {
+.face__back .card__bump-container {
   right: -30px;
   background-color: $card-back-accent-color;
 }
 
-.card__category {  
-  position: relative;  
+.card__category {
+  position: relative;
   width: 100%;
   height: 60px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   display: flex;
-  
-  justify-content: left; 
+
+  justify-content: left;
   align-items: center;
 }
 .face__back .card__category {
@@ -89,38 +85,45 @@ $border-width: 8px;
   padding-left: 60px;
 }
 
-.card__name-container{
-  position: relative;  
+.card__name,
+.category-name {
+  @extend %textshadow;
+  @extend %transition;
+}
+
+.card__name-container {
+  position: relative;
   width: 100%;
   height: 60px;
   border: 2px solid rgb(100, 100, 100);
   @include font($card-text-size, $card-text-size, $font-weight-bold);
-  border-radius: 8px; 
+  border-radius: 8px;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
 }
 
-.card__image-container{  
-  position: relative;  
+.card__image-container {
+  position: relative;
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background-color: rgba(255,255,255,0.7);
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 10px;
+  box-shadow: 0 0 10px 1px #838383af;
 }
 
-.card__image{
+.card__image {
   display: block;
   width: auto;
   height: 100%;
   margin: auto;
-  background-size: contain; 
+  background-size: contain;
 }
 
 .rotate-image-container {
   position: absolute;
-  
+
   right: 0;
   top: 225px;
   width: 50px;
@@ -128,78 +131,90 @@ $border-width: 8px;
   margin-right: 5px;
 }
 
-.rotate-image{
+.rotate-image {
   z-index: 5;
   width: 100%;
-  height: 100%;   
+  height: 100%;
   background-image: url(assets/images/flip.svg);
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;  
+  background-position: center;
   @extend %transition;
   opacity: 0.6;
-  &:hover{
+  &:hover {
     opacity: 1;
     @extend %transition;
   }
-
 }
 
-.face {   
+.face {
   position: absolute;
   z-index: 4;
   top: 0;
   left: 0;
   height: 350px;
   width: 260px;
-  
+
   @extend %transition;
   box-shadow: 0 0 10px 5px #838383af;
-  &:hover{
+  &:hover {
     box-shadow: 0 0 12px 8px #838383af;
-    top:-2px;
+    top: -2px;
     @extend %transition;
   }
-
 
   border-radius: 10px;
   border: $border-width solid $card-border-color;
   background-color: $card-border-color;
 
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border-radius: 8px;
   backface-visibility: hidden;
 
-  &__front{
-    
+  &__front {
     @include gradient(
       $card-front-gradient1-color,
       $card-front-gradient2-color,
       $card-front-gradient3-color,
-      $card-front-gradient4-color);
-    .card__category{
+      $card-front-gradient4-color
+    );
+    .card__category {
       background-color: $card-front-accent-color;
     }
-    .card__name-container{
+    .card__name-container {
       background-color: $card-front-accent-color;
-    }    
+    }
   }
-  &__back {    
+  &__back {
     transform: rotateY(180deg);
     @include gradient(
       $card-back-gradient1-color,
       $card-back-gradient2-color,
       $card-back-gradient3-color,
-      $card-back-gradient4-color); 
-    .card__category{
+      $card-back-gradient4-color
+    );
+    .card__category {
       background-color: $card-back-accent-color;
     }
-    .card__name-container{
+    .card__name-container {
       background-color: $card-back-accent-color;
     }
+  }
+}
+
+// play mode
+.play {
+  .rotate-image,
+  .card__name {
+    display: none;
+    @extend %transition;
+  }
+  .bump-image {
+    background-image: url(assets/images/owl_test.png);
+    @extend %transition;
   }
 }
 
@@ -207,36 +222,36 @@ $border-width: 8px;
 
 @keyframes cardAppear {
   0% {
-    transform: rotate3d(0,0,1,15deg) translate3d(0,-100vh,0);
+    transform: rotate3d(0, 0, 1, 15deg) translate3d(0, -100vh, 0);
   }
   40% {
-    transform: rotate3d(0,0,0,0deg) translate3d(0,0,0);
+    transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
   }
   80% {
-    transform: rotate3d(0,0,0,0deg) translate3d(0,0,0) scale3d(1,1,1);
-  }  
+    transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
 }
 
 @keyframes cardFlip {
   0% {
     transform: rotateZ(0deg) rotateY(180deg);
-  } 
+  }
   50% {
     transform: rotateZ(-5deg) rotateY(90deg);
   }
   100% {
     transform: rotateZ(0deg) rotateY(0deg);
-  }  
+  }
 }
 
 @keyframes cardUnflip {
   0% {
     transform: rotateZ(0deg) rotateY(0deg);
-  } 
+  }
   50% {
     transform: rotateZ(-5deg) rotateY(90deg);
   }
   100% {
     transform: rotateZ(0deg) rotateY(180deg);
-  }  
+  }
 }

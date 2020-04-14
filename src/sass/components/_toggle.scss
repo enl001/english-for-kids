@@ -1,0 +1,80 @@
+.toggle {
+  position: relative;
+  margin-right: 20px; 
+}
+
+input[type="checkbox"] {
+  
+  position: relative;
+  width: 130px;
+  height: 60px;
+  -webkit-appearance: none;
+  background: $card-back-gradient3-color;
+  outline: none;
+  border-radius: 30px;
+  box-shadow: inset 0 0 8px $card-back-gradient2-color;
+  @extend %transition;
+  @extend %userselect;
+  cursor: pointer;   
+  
+}
+
+input[type="checkbox"]:checked {
+  background: $card-front-gradient3-color;
+  box-shadow: inset 0 0 8px $card-front-gradient2-color;
+}
+
+input[type="checkbox"]:before {
+  content: '';
+  position: absolute;
+  width:70px;
+  height: 70px;
+  background: $card-back-gradient1-color;
+  border: 5px solid $card-back-gradient1-color;
+  border-radius: 50%;
+  top:-5px;
+  left: 0;
+  box-shadow: 0 2px 5px  #838383af;
+  @extend %transition;
+
+  background-image: url(assets/images/owl_train.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;  
+
+  .toggle_active{
+    animation: toggleOnOf 0.6s ease-in-out;
+  }
+}
+
+input:checked[type="checkbox"]:before {
+  left: 60px;
+  background-image: url(assets/images/owl_test.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;  
+  //animation: toggleOnOf 0.6s 1 normal ease-in-out;
+}
+
+@keyframes toggleOnOf {
+  0% {
+    transform: rotateZ(0deg);
+    opacity: 1;
+  } 
+  25% {
+    transform: rotateZ(90deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: rotateZ(180deg);
+    opacity: 0.2;
+  }  
+  75% {
+    transform: rotateZ(270deg);
+    opacity: 0.5;
+  }   
+  100% {
+    transform: rotateZ(360deg);
+    opacity: 1;
+  } 
+}
