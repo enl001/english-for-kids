@@ -1,0 +1,67 @@
+ 
+  .button{
+    position: absolute;
+    top: 20px;    
+    right: 180px;
+    width: 250px;
+    height: 50px;
+    background-color: $header-color;
+    box-shadow: 0 0 5px 1px rgb(80, 80, 80);
+    border-radius: 30px;
+    padding: 5px;
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;    
+    flex-wrap: nowrap;
+    text-transform: uppercase;
+    opacity: 0.8;
+
+    @extend %userselect;
+    @extend %transition;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+      @extend %transition;
+    }
+
+    &__text {      
+      @include font(30px, 30px, $font-weight-light);
+      color: $card-back-gradient4-color;
+    }
+
+    &__image {  
+      @extend %transition;
+      @extend %userselect;         
+      width: 35px;
+      height: 35px;      
+      background-image: url(assets/images/play_circle.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    } 
+
+  }
+
+  .repeat {
+    width: 100px;
+    .button__text {     
+      width: 50px;
+      color: transparent;
+      background-image: url(assets/images/repeat1.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .button__image {
+      @extend %transition;
+      display: none;
+    }
+  }
+  .button_train-mode {
+    @extend %transition;
+    top: -100vh;
+    //display:none;
+  }
+
+  

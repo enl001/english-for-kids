@@ -1,5 +1,5 @@
 import { fillWordCards } from '@components/fillWordCards';
-import { cardsContainerHandler, cardsMouseLeaveHandler } from '@components/wordCardsHandlers';
+import { cardsContainerHandler, cardsMouseLeaveHandler } from '@components/cardsHandlers';
 
 export const createCategoryLayout = (cardSet) => {
   (async () => {

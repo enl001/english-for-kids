@@ -1,11 +1,12 @@
 .title {
-  position: relative;
-  display: block;
+  position: absolute;
+  top:20px;
+  left: 90px;
+  display: inline-block;
   font-size: 40px;
   line-height: 40px;
   color: $header-color;
-  text-transform: uppercase;
-  margin-left: 90px;
+  text-transform: uppercase;  
   @extend %textshadow;
   user-select: none;
 }

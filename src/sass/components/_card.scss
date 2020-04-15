@@ -2,8 +2,8 @@ $border-width: 8px;
 
 .card-container {
   position: relative;
-  width: 270px;
-  height: 360px;
+  width: 260px;
+  height: 350px;
   perspective: 600px;
   margin: 25px;
 
@@ -216,6 +216,24 @@ $border-width: 8px;
     background-image: url(assets/images/owl_test.png);
     @extend %transition;
   }
+}
+.inactive {  
+  .face {    
+    box-shadow: 0 0 10px 5px #1dd42caf;
+    &:hover {
+      box-shadow: 0 0 10px 5px #1dd42caf;
+      top: 0;    
+    }
+  } 
+}
+.inactive_wrong {
+  .face {
+    box-shadow: 0 0 10px 5px #e02f22af;
+    &:hover {
+      box-shadow: 0 0 12px 8px #e02f22af;
+      top: 0;    
+    }
+  } 
 }
 
 // animation

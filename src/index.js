@@ -3,6 +3,8 @@ import './sass/styles.scss';
 import vocabulary from '@data/vocabulary';
 import { sourceType, getPath } from '@utils/path';
 import { createCategoryLayout, deleteCategoryLayout } from '@components/layout';
+import { playTrainSwitchHandler, startResetGameHandler } from '@components/headerMenuHandlers';
+import { appMode, appPage } from '@components/appPagesModes';
 
 
 // https://www.youtube.com/watch?v=eSaF8NXeNsA&vl=en-GB
@@ -12,29 +14,18 @@ import { createCategoryLayout, deleteCategoryLayout } from '@components/layout';
 const { categories } = vocabulary;
 const currentCardSet = (vocabulary.getCardSetByCategory(categories[0]));
 
-const playTrain = document.getElementById('togglePlay');
-let isPlay = false;
-const wordCardsAreShown = true;
-
-playTrain.addEventListener('click', () => {
-  isPlay = !isPlay;
-  playTrain.classList.toggle('toggle_active');
-  console.log(isPlay);
-  if (wordCardsAreShown) {
-    const cards = document.querySelectorAll('.card');
-    if (cards) {
-      cards.forEach((card) => {
-        if (isPlay) {
-          card.classList.add('play');
-        } else {
-          card.classList.remove('play');
-        }
-      });
-    }
-  }
-});
+//----------------------------------
+// set global variables
+//----------------------------------
+window.myApplicationMode = appMode.train;
+window.gameCardSequence = [];
+window.myApplicationPage = appPage.categoryPage;
+window.gameResultErrors = 0;
+//-----------------------------------------
 
 
+playTrainSwitchHandler();
+startResetGameHandler(currentCardSet);
 createCategoryLayout(currentCardSet);
 
 
