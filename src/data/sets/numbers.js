@@ -13,8 +13,8 @@ export default [
     categoryTranslation,
     'numbers',
     'цифры',
-    ['numbers/numbers.png'],
-    ['numbers/numbers.mp3', 'numbers/numbers.mp3'],
+    ['numbers/zero-1.png'],
+    ['numbers/numbers-1.mp3', 'numbers/numbers-2.mp3'],
   ),
   new Card(
     category,

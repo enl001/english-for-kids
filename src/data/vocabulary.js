@@ -1,13 +1,17 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 /* eslint-disable no-plusplus */
+/* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
 import { getRandomIndexes } from '@utils/utils';
 import numbersSet from './sets/numbers';
+import defaultSet from './sets/default';
 
 const maxNumOfCards = 4;
 
-/* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
 export default {
   _sets: {
     numbers: numbersSet,
+    default: defaultSet,
   },
   get categories() {
     return Object.keys(this._sets);
@@ -17,6 +21,13 @@ export default {
       return this.getRandomCards(this._sets[category], maxNumOfCards);
     }
     throw new TypeError('Wrong category');
+  },
+  getCategoriesCards() {
+    const categoriesCards = [];
+    for (const set in this._sets) {
+      categoriesCards.push(this._sets[set][0]);
+    }
+    return categoriesCards;
   },
   getRandomCards(set, n) {
     const arrLength = set.length - 1; //  first element in a set is a category card

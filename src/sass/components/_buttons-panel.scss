@@ -58,7 +58,7 @@
       display: none;
     }
   }
-  .button_train-mode {
+  .button_train-mode, .button_menu-page {
     @extend %transition;
     top: -100vh;
     //display:none;

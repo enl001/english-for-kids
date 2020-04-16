@@ -46,60 +46,89 @@ const playCardSound = (card, cardSet) => {
   }
 };
 
+const gameRoutine = (e, card, cardSet) => {
+  const cardId = parseInt(card.getAttribute('id'), 10);
+  switch (window.myApplicationMode) {
+    case appMode.train:
+      if (e.target.classList.contains('rotate-image')) {
+        cardFlipUnflip(card);
+      } else {
+        playCardSound(card, cardSet);
+      }
+      break;
+    case appMode.game:
+      // console.log(appMode.game);
+      if (card.classList.contains('inactive')) return;
+      if (window.gameCardSequence.length > 0) {
+        // right card
+        if (window.gameCardSequence[window.gameCardSequence.length - 1] === cardId) {
+          window.gameCardSequence.pop();
+          playSound(getPath(sourceType.sound, 'correct.mp3'));
+          card.classList.add('inactive');
+          if (window.gameCardSequence.length <= 0) {
+            console.log('game end');
+            console.log(`errors: ${window.gameResultErrors}`);
+            console.log(window.gameCardSequence);
+            const gameResult = {
+              category: window.currentCardSet[0].category,
+              errorsCount: window.gameResultErrors,
+            };
+            document.dispatchEvent(new CustomEvent('gameEnd', { detail: { gameResult } }));
+          } else {
+            setTimeout(() => {
+              const id = window.gameCardSequence[window.gameCardSequence.length - 1];
+              if (!cardSet[id]) return;
+              playSound(getPath(sourceType.sound, cardSet[id].pronunciation));
+            }, 1000);
+          }
+          // wrong card
+        } else {
+          playSound(getPath(sourceType.sound, 'error.mp3'));
+          card.classList.add('inactive_wrong');
+          window.gameResultErrors += 1;
+          setTimeout(() => {
+            card.classList.remove('inactive_wrong');
+          }, 500);
+        }
+      } else {
+        console.log('Need to start the game!');
+      }
+
+      break;
+    default:
+      console.log('error');
+      break;
+  }
+};
+
+const menuRoutine = (card, cardSet) => {
+  const id = parseInt(card.getAttribute('id'), 10);
+  playSound(getPath(sourceType.sound, cardSet[id].pronunciation));
+
+  document.dispatchEvent(
+    new CustomEvent('menuPick', { detail: { category: cardSet[id].category } }),
+  );
+};
+
 
 //-------
 // base game logic
 //------------
-export const cardsContainerHandler = (cardsContainer, cardSet) => {
+export const cardsContainerHandler = (cardsContainer) => {
   cardsContainer.addEventListener('click', (e) => {
   // e.stopPropagation();
+    const cardSet = window.currentCardSet;
     const card = findCard(e.target);
     if (!card) return;
 
-    const cardId = parseInt(card.getAttribute('id'), 10);
-
-    switch (window.myApplicationMode) {
-      case appMode.train:
-        if (e.target.classList.contains('rotate-image')) {
-          cardFlipUnflip(card);
-        } else {
-          playCardSound(card, cardSet);
-        }
+    switch (window.myApplicationPage) {
+      case appPage.categoryPage:
+        gameRoutine(e, card, cardSet);
         break;
-      case appMode.game:
-        // console.log(appMode.game);
-        if (card.classList.contains('inactive')) return;
-        if (window.gameCardSequence.length > 0) {
-          // right card
-          if (window.gameCardSequence[window.gameCardSequence.length - 1] === cardId) {
-            window.gameCardSequence.pop();
-            playSound(getPath(sourceType.sound, 'correct.mp3'));
-            card.classList.add('inactive');
-            if (window.gameCardSequence.length <= 0) {
-              console.log('game end');
-              console.log(`errors: ${window.gameResultErrors}`);
-            } else {
-              setTimeout(() => {
-                const id = window.gameCardSequence[window.gameCardSequence.length - 1];
-                playSound(getPath(sourceType.sound, cardSet[id].pronunciation));
-              }, 1500);
-            }
-            // wrong card
-          } else {
-            playSound(getPath(sourceType.sound, 'error.mp3'));
-            card.classList.add('inactive_wrong');
-            window.gameResultErrors += 1;
-            setTimeout(() => {
-              card.classList.remove('inactive_wrong');
-            }, 500);
-          }
-        } else {
-          console.log('Need to start the game!');
-        }
-
+      case appPage.menuPage:
+        menuRoutine(card, cardSet);
         break;
       default:
-        console.log('error');
         break;
     }
   });

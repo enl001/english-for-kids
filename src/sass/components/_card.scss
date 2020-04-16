@@ -117,8 +117,7 @@ $border-width: 8px;
   display: block;
   width: auto;
   height: 100%;
-  margin: auto;
-  background-size: contain;
+  margin: auto;  
 }
 
 .rotate-image-container {
@@ -196,6 +195,7 @@ $border-width: 8px;
       $card-back-gradient3-color,
       $card-back-gradient4-color
     );
+
     .card__category {
       background-color: $card-back-accent-color;
     }
@@ -217,6 +217,34 @@ $border-width: 8px;
     @extend %transition;
   }
 }
+
+.result {
+  .bump-image {
+    background-image: url(assets/images/owl_test.png);
+    @extend %transition;
+  }
+}
+
+.failure {
+  .face__front, .face__back {
+    @include gradient(
+      $card-failure-gradient1-color,
+      $card-failure-gradient2-color,
+      $card-failure-gradient3-color,
+      $card-failure-gradient4-color,
+    );
+    .card__bump-container {
+      background-color: $card-failure-gradient4-color;
+    }
+    .card__category {
+      background-color: $card-failure-gradient4-color;
+    }
+    .card__name-container {
+      background-color: $card-failure-gradient4-color;
+    }
+  }
+}
+
 .inactive {  
   .face {    
     box-shadow: 0 0 10px 5px #1dd42caf;

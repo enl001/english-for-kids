@@ -9,13 +9,14 @@ export const playTrainSwitchHandler = () => {
   playTrain.addEventListener('click', () => {
     isPlay = !isPlay;
     playTrain.classList.toggle('toggle_active');
-
     window.myApplicationMode = (isPlay) ? appMode.game : appMode.train;
+    const cards = document.querySelectorAll('.card');
+    const startResetGame = document.getElementById('start-reset-game');
 
-    if (window.myApplicationPage === appPage.categoryPage) {
-      const cards = document.querySelectorAll('.card');
-      const startResetGame = document.getElementById('start-reset-game');
-      if (cards) {
+    if (!cards) { console.log('Not a card!!!'); return; }
+    switch (window.myApplicationPage) {
+      case (appPage.categoryPage):
+        console.log('category');
         cards.forEach((card) => {
           if (isPlay) {
             card.classList.add('play');
@@ -29,12 +30,28 @@ export const playTrainSwitchHandler = () => {
             }, 500);
           }
         });
-      }
+        break;
+      case (appPage.menuPage):
+        console.log('menu');
+        cards.forEach((card) => {
+          if (isPlay) {
+            card.classList.add('play');
+            startResetGame.classList.remove('button_train-mode');
+          } else {
+            card.classList.remove('play');
+            startResetGame.classList.add('button_train-mode');
+          }
+        });
+        break;
+
+      default:
+        console.log('default');
+        break;
     }
   });
 };
 
-const playCurrentCardSound = (cardSet) => {
+export const playCurrentCardSound = (cardSet) => {
   if (window.gameCardSequence.length === 0) return;
   const id = window.gameCardSequence[window.gameCardSequence.length - 1];
   setTimeout(() => {
@@ -42,19 +59,17 @@ const playCurrentCardSound = (cardSet) => {
   }, 1000);
 };
 
-export const startResetGameHandler = (cardSet) => {
+export const startResetGameHandler = () => {
   const startResetGame = document.getElementById('start-reset-game');
-
   startResetGame.addEventListener('click', () => {
+    console.log(window.myApplicationMode);
     if (window.myApplicationMode !== appMode.game) return;
+    const cardSet = window.currentCardSet;
     if (!startResetGame.classList.contains('repeat')) {
       startResetGame.classList.add('repeat');
-      console.log('game started!');
-      window.gameCardSequence = getRandomIndexes(cardSet.length);
-      window.gameResultErrors = 0; // reset errors
-      playCurrentCardSound(cardSet);
-      console.log(window.gameCardSequence);
+      document.dispatchEvent(new CustomEvent('gameStart'));
     } else {
+      console.log(window.gameCardSequence);
       playCurrentCardSound(cardSet);
       console.log('play again');
     }
