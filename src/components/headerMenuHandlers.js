@@ -79,6 +79,8 @@ export const startResetGameHandler = () => {
 export const menuButtonHandler = () => {
   const menuButton = document.getElementById('menu-button');
   menuButton.addEventListener('click', () => {
-    console.log('menuButton');
+    const menu = document.querySelector('.side-menu__container');
+    menuButton.classList.toggle('active');
+    menu.classList.toggle('side-menu__container_hidden');
   });
 };

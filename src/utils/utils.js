@@ -20,3 +20,14 @@ export const playSound = (soundPath) => {
   const audio = new Audio(soundPath);
   audio.play();
 };
+
+export const findElement = (startElement, withClass) => {
+  let a = startElement;
+  while (a) {
+    if (a.classList.contains(withClass)) return a;
+    a = a.parentNode;
+    if (a.tagName === 'MAIN') return null;
+    if (a.tagName === 'HTML') return null;
+  }
+  return null;
+};

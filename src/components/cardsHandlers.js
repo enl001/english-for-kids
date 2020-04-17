@@ -1,17 +1,6 @@
 import { sourceType, getPath } from '@utils/path';
-import { playSound } from '@utils/utils';
+import { playSound, findElement } from '@utils/utils';
 import { appMode, appPage } from '@components/appPagesModes';
-
-const findCard = (element) => {
-  let a = element;
-  while (a) {
-    if (a.classList.contains('card')) return a;
-    a = a.parentNode;
-    if (a.tagName === 'MAIN') return null;
-    if (a.tagName === 'HTML') return null;
-  }
-  return null;
-};
 
 const cardUnflip = (card) => {
   if (!card.classList.contains('card_active')) {
@@ -108,7 +97,7 @@ const menuRoutine = (card, cardSet) => {
   playSound(getPath(sourceType.sound, cardSet[id].pronunciation));
 
   document.dispatchEvent(
-    new CustomEvent('menuPick', { detail: { category: cardSet[id].category } }),
+    new CustomEvent('createCardsLayout', { detail: { category: cardSet[id].category } }),
   );
 };
 
@@ -120,7 +109,7 @@ export const cardsContainerHandler = (cardsContainer) => {
   cardsContainer.addEventListener('click', (e) => {
   // e.stopPropagation();
     const cardSet = window.currentCardSet;
-    const card = findCard(e.target);
+    const card = findElement(e.target, 'card');
     if (!card) return;
 
     switch (window.myApplicationPage) {

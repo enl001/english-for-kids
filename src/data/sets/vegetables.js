@@ -14,7 +14,7 @@ export default [
     'vegetables',
     'овощи',
     ['vegetables/potatoes-1.png'],
-    ['default-1.mp3', 'default-1.mp3'],
+    ['vegetables/vegetables-1.mp3', 'vegetables/vegetables-2.mp3'],
   ),
   new Card(
     category,

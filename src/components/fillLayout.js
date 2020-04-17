@@ -85,3 +85,30 @@ export const fillResultCard = async (container, gameResult) => {
 
   container.appendChild(cardTemplate.content.cloneNode(true));
 };
+
+export const fillSideMenuCard = async (itemsContainer, cardsSet) => {
+  const result = await fetch('assets/templates/menuItem.html');
+  const textTemplate = await result.text();
+  const itemTemplate = new DOMParser().parseFromString(textTemplate, 'text/html')
+    .querySelector('template');
+
+  itemTemplate.content.getElementById('item-name')
+    .textContent = 'MENU';
+  let imgPath = getPath(sourceType.image, 'owl_train.png');
+  itemTemplate.content.getElementById('item-image')
+    .setAttribute('src', imgPath);
+  let itemElement = itemTemplate.content.querySelector('.item');
+  itemElement.setAttribute('id', 'menu');
+  itemsContainer.appendChild(itemTemplate.content.cloneNode(true));
+
+  cardsSet.forEach((card, i) => {
+    itemTemplate.content.getElementById('item-name')
+      .textContent = card.category.toUpperCase();
+    imgPath = getPath(sourceType.image, card.image);
+    itemTemplate.content.getElementById('item-image')
+      .setAttribute('src', imgPath);
+    itemElement = itemTemplate.content.querySelector('.item');
+    itemElement.setAttribute('id', i);
+    itemsContainer.appendChild(itemTemplate.content.cloneNode(true));
+  });
+};

@@ -14,7 +14,7 @@ export default [
     'colors',
     'цвета',
     ['colors/blue-1.png'],
-    ['default-1.mp3', 'default-1.mp3'],
+    ['colors/colors-1.mp3', 'colors/colors-2.mp3'],
   ),
   new Card(
     category,

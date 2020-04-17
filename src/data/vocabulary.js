@@ -8,7 +8,7 @@ import vegetablesSet from './sets/vegetables';
 import colorsSet from './sets/colors';
 import defaultSet from './sets/default';
 
-const maxNumOfCards = 10;
+const maxNumOfCards = 4;
 
 export default {
   _sets: {

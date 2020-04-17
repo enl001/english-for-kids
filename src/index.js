@@ -4,7 +4,7 @@ import vocabulary from '@data/vocabulary';
 import { sourceType, getPath } from '@utils/path';
 import {
   createCategoryLayout, deleteCategoryLayout, createMenuLayout, deleteMenuLayout,
-  createResultLayout, deleteResultLayout,
+  createResultLayout, deleteResultLayout, createSideMenuLayout,
 } from '@components/layout';
 import {
   playTrainSwitchHandler, startResetGameHandler,
@@ -12,7 +12,7 @@ import {
 } from '@components/headerMenuHandlers';
 import { appMode, appPage } from '@components/appPagesModes';
 import { cardsContainerHandler } from '@components/cardsHandlers';
-import { getRandomIndexes, playSound } from '@utils/utils';
+import { getRandomIndexes, playSound, findElement } from '@utils/utils';
 
 
 // https://www.youtube.com/watch?v=eSaF8NXeNsA&vl=en-GB
@@ -57,29 +57,73 @@ document.addEventListener('gameEnd', (event) => {
     }, 500);
   }, 1000);
   setTimeout(() => {
-    deleteResultLayout();
-    currentCardSet = vocabulary.getCategoriesCards();
-    window.currentCardSet = currentCardSet;
-    createMenuLayout(currentCardSet);
+    document.dispatchEvent(new CustomEvent('createMenuLayout'));
   }, 4000);
 });
 
-document.addEventListener('menuPick', (event) => {
+document.addEventListener('createCardsLayout', (event) => {
   console.log(event.detail.category);
   currentCardSet = (vocabulary
     .getCardSetByCategory(event.detail.category.toLowerCase()));
   window.currentCardSet = currentCardSet;
   window.myApplicationPage = appPage.categoryPage;
+  deleteCategoryLayout();
   deleteMenuLayout();
   createCategoryLayout(currentCardSet);
+});
+
+document.addEventListener('createMenuLayout', () => {
+  deleteResultLayout();
+  deleteMenuLayout();
+  deleteCategoryLayout();
+  const menuCardSet = window.menuCardsSet;
+  window.currentCardSet = menuCardSet;
+  window.myApplicationPage = appPage.menuPage;
+  createMenuLayout(menuCardSet);
 });
 
 
 //-----------------------------------------
 playTrainSwitchHandler();
 startResetGameHandler();
+window.menuCardsSet = vocabulary.getCategoriesCards();
+document.dispatchEvent(new CustomEvent('createMenuLayout'));
+createSideMenuLayout(window.menuCardsSet);
 menuButtonHandler();
-currentCardSet = vocabulary.getCategoriesCards();
-window.myApplicationPage = appPage.menuPage;
-window.currentCardSet = currentCardSet;
-createMenuLayout(currentCardSet);
+
+document.addEventListener('click', (event) => {
+  const menuButton = document.getElementById('menu-button');
+  const menuIsOpen = menuButton.classList.contains('active');
+  const isMenuButton = (event.target.classList.contains('hamburger')
+  || event.target.classList.contains('hamburger__line'));
+
+  if (menuIsOpen && !isMenuButton) {
+    const isMenuList = findElement(event.target, 'menu');
+    if (isMenuList) {
+      const item = findElement(event.target, 'item');
+      if (item) {
+        const id = parseInt(item.id, 10);
+        menuButton.classList.remove('active');
+        document.getElementById('side-menu').classList.add('side-menu__container_hidden');
+        setTimeout(() => {
+          // eslint-disable-next-line no-restricted-globals
+          if (!isNaN(id)) {
+            const card = window.menuCardsSet[id];
+            playSound(getPath(sourceType.sound, card.pronunciation));
+            document.dispatchEvent(
+              new CustomEvent('createCardsLayout', { detail: { category: card.category } }),
+            );
+          } else {
+            document.dispatchEvent(new CustomEvent('createMenuLayout'));
+          }
+        }, 500);
+      }
+    } else {
+      menuButton.dispatchEvent(new Event('click'));
+    }
+
+    // if (isSideMenu) return;
+    // const menuItem = findElement(event.target, 'item');
+    // console.log(menuItem);
+  }
+});

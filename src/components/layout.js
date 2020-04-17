@@ -1,4 +1,6 @@
-import { fillWordCards, fillMenuCards, fillResultCard } from '@components/fillLayout';
+import {
+  fillWordCards, fillMenuCards, fillResultCard, fillSideMenuCard,
+} from '@components/fillLayout';
 import { cardsContainerHandler, cardsMouseLeaveHandler } from '@components/cardsHandlers';
 
 export const createCategoryLayout = (cardSet) => {
@@ -42,19 +44,33 @@ export const createResultLayout = (gameResult) => {
   })();
 };
 
+export const createSideMenuLayout = (cardSet) => {
+  (async () => {
+    const entry = document.getElementById('side-menu');
+    const itemsContainer = document.createElement('UL');
+    itemsContainer.classList.add('menu');
+    entry.appendChild(itemsContainer);
+    await fillSideMenuCard(itemsContainer, cardSet);
+  })();
+};
+
+
 export const deleteCategoryLayout = () => {
   const cardsContainer = document.querySelector('.cards-layout');
+  if (!cardsContainer) return;
   const startResetGame = document.getElementById('start-reset-game');
   startResetGame.classList.add('button_menu-page');
   cardsContainer.remove();
 };
 export const deleteMenuLayout = () => {
   const cardsContainer = document.querySelector('.menu-layout');
+  if (!cardsContainer) return;
   const startResetGame = document.getElementById('start-reset-game');
   startResetGame.classList.remove('button_menu-page');
   cardsContainer.remove();
 };
 export const deleteResultLayout = () => {
   const cardsContainer = document.querySelector('.result-layout');
+  if (!cardsContainer) return;
   cardsContainer.remove();
 };
