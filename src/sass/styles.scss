@@ -1,17 +1,19 @@
+// abstracts
+@import './abstracts/mixins';
+@import './abstracts/placeholders';
 @import './abstracts/variables';
+
 // base
 @import './base/reset';
 @import './base/base';
 @import './base/typography';
 
-// abstracts
-@import './abstracts/mixins';
-@import './abstracts/placeholders';
 
 // layout
 @import './layout/wrapper';
 @import './layout/cardsLayout';
 @import './layout/header-layout';
+@import './layout/footer-layout';
 
 // components
 @import './components/card';
@@ -19,3 +21,4 @@
 @import './components/title';
 @import './components/toggle';
 @import './components/buttons-panel';
+@import './components/side-menu';

@@ -5,9 +5,8 @@ $border-width: 8px;
   width: 260px;
   height: 350px;
   perspective: 600px;
-  margin: 25px;
-
-  @include font($card-text-size, $card-text-size, $font-weight-bold);
+  margin: 25px;  
+  @include font($card-category-size, $card-category-size, $font-weight-bold);
   color: $card-text-color;
 
   animation: cardAppear 1.4s forwards;
@@ -23,11 +22,15 @@ $border-width: 8px;
   cursor: pointer;
 
   &.card_flip {
-    animation: cardFlip 0.275s forwards linear;
+    animation: cardFlip 0.275s forwards linear;    
   }
   &.card_unflip {
     animation: cardUnflip 0.275s forwards linear;
   }
+
+
+  
+
 }
 
 .card__bump-container {
@@ -89,6 +92,7 @@ $border-width: 8px;
 .category-name {
   @extend %textshadow;
   @extend %transition;
+  max-width: 180px;
 }
 
 .card__name-container {
@@ -96,7 +100,7 @@ $border-width: 8px;
   width: 100%;
   height: 60px;
   border: 2px solid rgb(100, 100, 100);
-  @include font($card-text-size, $card-text-size, $font-weight-bold);
+  font-size: $card-name-size;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -110,14 +114,19 @@ $border-width: 8px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.7);
   padding: 10px;
-  box-shadow: 0 0 10px 1px #838383af;
+  box-shadow: 0 0 10px 1px #838383af; 
+
 }
 
 .card__image {
   display: block;
-  width: auto;
-  height: 100%;
-  margin: auto;  
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);  
+  max-width: 90%;
+  max-height: 90%;
+   
 }
 
 .rotate-image-container {
@@ -154,13 +163,14 @@ $border-width: 8px;
   height: 350px;
   width: 260px;
 
-  @extend %transition;
-  box-shadow: 0 0 10px 5px #838383af;
-  &:hover {
-    box-shadow: 0 0 12px 8px #838383af;
-    top: -2px;
-    @extend %transition;
-  }
+   @extend %transition;
+   box-shadow: 0 0 10px 5px #838383af;   
+   &:hover {
+     box-shadow: 0 0 12px 8px #838383af;
+     top: -2px;
+     //transform: rotateY(180deg) scale(1.05);
+     @extend %transition;
+   }
 
   border-radius: 10px;
   border: $border-width solid $card-border-color;
@@ -280,13 +290,13 @@ $border-width: 8px;
 
 @keyframes cardFlip {
   0% {
-    transform: rotateZ(0deg) rotateY(180deg);
+    transform: rotateZ(0deg) rotateY(180deg) scale(1.05);
   }
   50% {
-    transform: rotateZ(-5deg) rotateY(90deg);
+    transform: rotateZ(-5deg) rotateY(90deg) scale(1.05);
   }
   100% {
-    transform: rotateZ(0deg) rotateY(0deg);
+    transform: rotateZ(0deg) rotateY(0deg) scale(1.05);
   }
 }
 

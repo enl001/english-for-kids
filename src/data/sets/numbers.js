@@ -4,7 +4,7 @@ import Card from '@models/card.js';
 // word = 'word',
 // translation = 'translation',
 // image = 'default.png',
-// pronunciations = ['default-m.mp3', 'default-f.mp3']
+// pronunciations = ['default-1.mp3', 'default-2.mp3']
 const category = 'numbers';
 const categoryTranslation = 'цифры';
 export default [

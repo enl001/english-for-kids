@@ -13,6 +13,12 @@
     $color3 45% 70%,
     $color4 70%);
 };
+@mixin footerGradient($color1, $color2, $color3, $color4) {
+  background: $color1;
+  background: linear-gradient(45deg,    
+    $color4 0% 10%,    
+    $color2 10%);
+};
 
 @mixin headerGradient($color1, $color2, $color3, $color4) {
   background: $color1;

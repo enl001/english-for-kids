@@ -4,8 +4,8 @@ import { sourceType, getPath } from '@utils/path';
 
 export const playTrainSwitchHandler = () => {
   const playTrain = document.getElementById('togglePlay');
-  let isPlay = false;
-
+  // let isPlay = false;
+  let isPlay = (window.myApplicationMode === appMode.game);
   playTrain.addEventListener('click', () => {
     isPlay = !isPlay;
     playTrain.classList.toggle('toggle_active');
@@ -73,5 +73,12 @@ export const startResetGameHandler = () => {
       playCurrentCardSound(cardSet);
       console.log('play again');
     }
+  });
+};
+
+export const menuButtonHandler = () => {
+  const menuButton = document.getElementById('menu-button');
+  menuButton.addEventListener('click', () => {
+    console.log('menuButton');
   });
 };

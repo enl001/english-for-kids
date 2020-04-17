@@ -6,7 +6,10 @@ import {
   createCategoryLayout, deleteCategoryLayout, createMenuLayout, deleteMenuLayout,
   createResultLayout, deleteResultLayout,
 } from '@components/layout';
-import { playTrainSwitchHandler, startResetGameHandler, playCurrentCardSound } from '@components/headerMenuHandlers';
+import {
+  playTrainSwitchHandler, startResetGameHandler,
+  menuButtonHandler, playCurrentCardSound,
+} from '@components/headerMenuHandlers';
 import { appMode, appPage } from '@components/appPagesModes';
 import { cardsContainerHandler } from '@components/cardsHandlers';
 import { getRandomIndexes, playSound } from '@utils/utils';
@@ -46,13 +49,19 @@ document.addEventListener('gameEnd', (event) => {
     console.log(event.detail.gameResult);
     deleteCategoryLayout();
     createResultLayout(event.detail.gameResult);
+    const path = (event.detail.gameResult.result === 'success')
+      ? getPath(sourceType.sound, 'success.mp3')
+      : getPath(sourceType.sound, 'failure.mp3');
+    setTimeout(() => {
+      playSound(path);
+    }, 500);
   }, 1000);
   setTimeout(() => {
     deleteResultLayout();
     currentCardSet = vocabulary.getCategoriesCards();
     window.currentCardSet = currentCardSet;
     createMenuLayout(currentCardSet);
-  }, 5000);
+  }, 4000);
 });
 
 document.addEventListener('menuPick', (event) => {
@@ -69,6 +78,7 @@ document.addEventListener('menuPick', (event) => {
 //-----------------------------------------
 playTrainSwitchHandler();
 startResetGameHandler();
+menuButtonHandler();
 currentCardSet = vocabulary.getCategoriesCards();
 window.myApplicationPage = appPage.menuPage;
 window.currentCardSet = currentCardSet;

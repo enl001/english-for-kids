@@ -71,7 +71,9 @@ const gameRoutine = (e, card, cardSet) => {
             console.log(window.gameCardSequence);
             const gameResult = {
               category: window.currentCardSet[0].category,
+              result: (window.gameResultErrors !== 0) ? 'failure' : 'success',
               errorsCount: window.gameResultErrors,
+
             };
             document.dispatchEvent(new CustomEvent('gameEnd', { detail: { gameResult } }));
           } else {

@@ -1,6 +1,7 @@
  
   .button{
-    position: absolute;
+    position: absolute; 
+
     top: 20px;    
     right: 180px;
     width: 250px;
@@ -41,6 +42,17 @@
       background-position: center;
     } 
 
+
+    @include media-mobile {
+      padding: 0;
+      top: calc(100vh - 70px); 
+      right: initial;
+      left: 20px;
+      width: 100px;
+      &__text {      
+        display: none;
+      }    
+    }
   }
 
   .repeat {
@@ -57,11 +69,24 @@
       @extend %transition;
       display: none;
     }
+
+    @include media-mobile {      
+      .button__text {      
+        display: block;
+      }    
+    }
   }
+  
   .button_train-mode, .button_menu-page {
     @extend %transition;
     top: -100vh;
     //display:none;
+    @include media-mobile { 
+      top: calc(100vh - 70px);
+      right: 180px;
+      left: -100vw;
+      
+    }
   }
 
   

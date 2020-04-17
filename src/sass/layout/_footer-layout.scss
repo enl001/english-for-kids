@@ -1,0 +1,23 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  max-width: $desktop-width; 
+  width: 100%;
+  z-index: 900;
+}
+.footer-layout {
+  position: relative;
+  height: 30px;
+  width: 100%;  
+  
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  background-color: $card-back-gradient4-color; 
+  box-shadow: 0 -15px 10px -10px #838383af;  
+
+  @include media-mobile {
+    height: 90px;     
+  }
+
+}

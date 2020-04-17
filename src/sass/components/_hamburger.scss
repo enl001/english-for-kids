@@ -24,6 +24,11 @@
   opacity: 0.8;
   
 
+  @include media-mobile {
+    top: 10px;        
+  }
+
+
   &:hover {
     opacity: 1;
     @extend %transition;

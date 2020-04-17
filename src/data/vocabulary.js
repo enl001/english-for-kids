@@ -4,13 +4,17 @@
 /* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
 import { getRandomIndexes } from '@utils/utils';
 import numbersSet from './sets/numbers';
+import vegetablesSet from './sets/vegetables';
+import colorsSet from './sets/colors';
 import defaultSet from './sets/default';
 
-const maxNumOfCards = 4;
+const maxNumOfCards = 10;
 
 export default {
   _sets: {
     numbers: numbersSet,
+    vegetables: vegetablesSet,
+    colors: colorsSet,
     default: defaultSet,
   },
   get categories() {

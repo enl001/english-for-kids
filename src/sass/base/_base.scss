@@ -10,7 +10,22 @@
 }
 
 body {
-  max-width: $desktop-width; 
+  max-width: $desktop-width;   
   margin: 0 auto;
-  background: rgb(228, 244, 255);
+
+
+  @include media-mobile {
+    max-width: $mobile-width;       
+  }
+  
+}
+.main {
+  background-color: rgb(228, 244, 255);
+  //height: 100vh;
+  min-height: calc(100vh - 20px);
+
+  
+    position: relative;
+    // background: rgb(49, 118, 165);
+  
 }
