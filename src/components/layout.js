@@ -1,5 +1,5 @@
 import {
-  fillWordCards, fillMenuCards, fillResultCard, fillSideMenuCard,
+  fillWordCards, fillMenuCards, fillResultCard, fillSideMenu,
 } from '@components/fillLayout';
 import { cardsContainerHandler, cardsMouseLeaveHandler } from '@components/cardsHandlers';
 
@@ -35,6 +35,7 @@ export const createMenuLayout = (cardSet) => {
     startResetGame.classList.remove('repeat');
     await fillMenuCards(cardSet, cardsContainer);
     cardsContainerHandler(cardsContainer);
+    console.log('menu layout!!!!!');
   })();
 };
 
@@ -54,7 +55,8 @@ export const createSideMenuLayout = (cardSet) => {
     const itemsContainer = document.createElement('UL');
     itemsContainer.classList.add('menu');
     entry.appendChild(itemsContainer);
-    await fillSideMenuCard(itemsContainer, cardSet);
+    await fillSideMenu(itemsContainer, cardSet);
+    console.log('side menu!!!!!');
   })();
 };
 

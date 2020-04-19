@@ -3,6 +3,8 @@
   scroll-behavior: smooth;
 }
 
+
+
 .noSelect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -12,15 +14,14 @@
   user-select: none;
 }
 
-.body {  
-  //max-width: $desktop-width; 
-
+.body {    
   // margin: 0;
   // background-repeat: no-repeat;
   background-position: center; 
   overflow-x: hidden;
+  overflow-y:scroll;
   max-width: $desktop-width; 
   min-width: 320px;
   margin: 0 auto;
-  position: relative;
+  position: relative; 
 }

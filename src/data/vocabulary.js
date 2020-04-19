@@ -18,13 +18,13 @@ const maxNumOfCards = 10;
 export default {
   _sets: {
     numbers: numbersSet,
-    vegetables: vegetablesSet,
-    colors: colorsSet,
     animals: animalsSet,
     birds: birdsSet,
     fruits: fruitsSet,
+    vegetables: vegetablesSet,
     berries: berriesSet,
     fastfood: fastfoodSet,
+    colors: colorsSet,
     default: defaultSet,
   },
   get categories() {

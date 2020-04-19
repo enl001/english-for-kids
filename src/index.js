@@ -84,13 +84,13 @@ document.addEventListener('createMenuLayout', () => {
   createMenuLayout(menuCardSet);
 });
 
-
 //-----------------------------------------
 playTrainSwitchHandler();
 startResetGameHandler();
 window.menuCardsSet = vocabulary.getCategoriesCards();
-document.dispatchEvent(new CustomEvent('createMenuLayout'));
 createSideMenuLayout(window.menuCardsSet);
+console.log('dispatch event');
+document.dispatchEvent(new CustomEvent('createMenuLayout'));
 menuButtonHandler();
 
 document.addEventListener('click', (event) => {
@@ -104,6 +104,13 @@ document.addEventListener('click', (event) => {
     if (isMenuList) {
       const item = findElement(event.target, 'item');
       if (item) {
+        // highlighte
+        const menuItemsText = document.querySelectorAll('.item__name');
+        menuItemsText.forEach((itemText) => {
+          itemText.classList.remove('item__name_selected');
+        });
+        item.querySelector('.item__name').classList.add('item__name_selected');
+        // pick
         const id = parseInt(item.id, 10);
         menuButton.classList.remove('active');
         document.getElementById('side-menu').classList.add('side-menu__container_hidden');
@@ -123,9 +130,5 @@ document.addEventListener('click', (event) => {
     } else {
       menuButton.dispatchEvent(new Event('click'));
     }
-
-    // if (isSideMenu) return;
-    // const menuItem = findElement(event.target, 'item');
-    // console.log(menuItem);
   }
 });

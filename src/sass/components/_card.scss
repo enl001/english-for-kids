@@ -154,7 +154,7 @@ $border-width: 8px;
   &:hover {
     opacity: 1;
     @extend %transition;
-    cursor: url(assets/images/reply.svg), auto;
+    cursor: url(assets/images/reply.svg) 16 16, auto;
   }
 }
 
@@ -281,15 +281,30 @@ $border-width: 8px;
 
 @keyframes cardAppear {
   0% {
+    -webkit-transform: rotate3d(0, 0, 1, 15deg) translate3d(0, -100vh, 0);
     transform: rotate3d(0, 0, 1, 15deg) translate3d(0, -100vh, 0);
   }
   40% {
+    -webkit-transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
     transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
   }
   80% {
+    -webkit-transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0) scale3d(1, 1, 1);
     transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0) scale3d(1, 1, 1);
   }
 }
+
+// @keyframes cardAppear {
+//   0% {
+//     transform: rotate3d(0, 0, 1, 15deg) translate3d(0, -100vh, 0);
+//   }
+//   40% {
+//     transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
+//   }
+//   80% {
+//     transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0) scale3d(1, 1, 1);
+//   }
+// }
 
 @keyframes cardFlip {
   0% {

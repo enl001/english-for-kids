@@ -5,25 +5,24 @@
   left: 0;
   z-index: 100;
   width: 100%;
-  min-width: 320px;  
+  min-width: 320px;
   height: 100%;
   //background-color: $card-back-gradient2-color;
   background-color: transparent;
   border-left: 10px solid $card-back-gradient4-color;
   @extend %transition;
-  
+
   @include font($card-category-size, $card-category-size, $font-weight-bold);
   color: $card-text-color;
   @extend %textshadow;
-  
 
   &_hidden {
     top: -100vh;
     height: 50px;
-    @extend %transition;    
+    @extend %transition;
   }
 
-  .menu{
+  .menu {
     @extend %userselect;
     list-style: none;
     display: flex;
@@ -33,48 +32,54 @@
     background-color: $card-back-gradient2-color;
     padding: 110px 10px 90px 10px;
     height: 100%;
-    
+
     .item {
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
-      justify-content: start;      
-      margin: 5px 0; 
+      justify-content: start;
+      margin: 5px 0;
       cursor: pointer;
-    
-    &__image-container {
-      position: relative;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 10px;
-      box-shadow: 0 0 10px 1px #838383af; 
-    }
+      &:hover{
+        color: rgb(126, 250, 163);
+      }
 
-    &__image {
-      display: block;
-      position: absolute;      
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);  
-      max-width: 90%;
-      max-height: 90%;
-    }
 
-    &__name {
-      margin-left: 5px;
-      align-self: center;
-    }
-    }
+      &__image-container {
+        position: relative;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 10px;
+        box-shadow: 0 0 10px 1px #838383af;        
+      }
 
+      &__image {
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+      &__name {
+        margin-left: 10px;
+        align-self: center;
+        max-width: 200px;       
+        &_selected {
+          color: rgb(126, 250, 163);
+        }
+      }
+    }
   }
-
-
-
-
-
-
-
-
+}
+.side-menu__container_hidden {
+  .menu {
+    .item {
+      display: none;
+    }
+  }
 }

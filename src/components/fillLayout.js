@@ -86,7 +86,7 @@ export const fillResultCard = async (container, gameResult) => {
   container.appendChild(cardTemplate.content.cloneNode(true));
 };
 
-export const fillSideMenuCard = async (itemsContainer, cardsSet) => {
+export const fillSideMenu = async (itemsContainer, itemsSet) => {
   const result = await fetch('assets/templates/menuItem.html');
   const textTemplate = await result.text();
   const itemTemplate = new DOMParser().parseFromString(textTemplate, 'text/html')
@@ -101,14 +101,15 @@ export const fillSideMenuCard = async (itemsContainer, cardsSet) => {
   itemElement.setAttribute('id', 'menu');
   itemsContainer.appendChild(itemTemplate.content.cloneNode(true));
 
-  cardsSet.forEach((card, i) => {
+  itemsSet.forEach((item, i) => {
     itemTemplate.content.getElementById('item-name')
-      .textContent = card.category.toUpperCase();
-    imgPath = getPath(sourceType.image, card.image);
+      .textContent = item.category.toUpperCase();
+    imgPath = getPath(sourceType.image, item.image);
     itemTemplate.content.getElementById('item-image')
       .setAttribute('src', imgPath);
     itemElement = itemTemplate.content.querySelector('.item');
     itemElement.setAttribute('id', i);
     itemsContainer.appendChild(itemTemplate.content.cloneNode(true));
   });
+  itemsContainer.querySelector('.item__name').classList.add('item__name_selected');
 };
