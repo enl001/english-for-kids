@@ -1,0 +1,30 @@
+.star-panel {  
+  //background-color: rt;
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  bottom: -20px;
+  left: 16px;
+  width: 66%;  
+  padding: 0 5px;
+  overflow: hidden;
+  display: flex;
+  // flex-wrap: nowrap;
+  // flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.star {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  flex-shrink: 0;
+  background-image: url(assets/images/star.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;;
+  //background-position: center;
+  &_win{
+    background-image: url(assets/images/star_win.svg);
+  }
+}

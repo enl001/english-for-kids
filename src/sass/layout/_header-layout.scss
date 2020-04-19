@@ -1,4 +1,5 @@
 .header {
+  display: block;
   position: fixed;
   top: 0;
   max-width: $desktop-width; 
@@ -11,18 +12,18 @@
   height: 90px;
   width: 100%;  
   padding-top: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-
-
+  
+  
   @include headerGradient(
-      $card-back-gradient1-color,
-      $card-back-gradient2-color,
-      $card-back-gradient3-color,
-      $card-back-gradient4-color);
-
-  border-bottom: 10px solid $header-accent-color; 
-  box-shadow: 0 20px 10px -10px #838383af;
+    $card-back-gradient1-color,
+    $card-back-gradient2-color,
+    $card-back-gradient3-color,
+    $card-back-gradient4-color);
+    
+    border-bottom: 20px solid $header-accent-color; 
+    box-shadow: 0 20px 10px -10px #838383af;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 
   @include media-mobile {
     padding-top: 5px;

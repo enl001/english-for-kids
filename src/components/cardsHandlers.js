@@ -34,6 +34,15 @@ const playCardSound = (card, cardSet) => {
     playSound(getPath(sourceType.sound, cardSet[id].pronunciation));
   }
 };
+const addStar = (isCorrect) => {
+  const starPanel = document.getElementById('star-panel');
+  const star = document.createElement('DIV');
+  star.classList.add('star');
+  if (isCorrect) {
+    star.classList.add('star_win');
+  }
+  starPanel.appendChild(star);
+};
 
 const gameRoutine = (e, card, cardSet) => {
   const cardId = parseInt(card.getAttribute('id'), 10);
@@ -53,6 +62,7 @@ const gameRoutine = (e, card, cardSet) => {
         if (window.gameCardSequence[window.gameCardSequence.length - 1] === cardId) {
           window.gameCardSequence.pop();
           playSound(getPath(sourceType.sound, 'correct.mp3'));
+          addStar(true);
           card.classList.add('inactive');
           if (window.gameCardSequence.length <= 0) {
             console.log('game end');
@@ -75,6 +85,7 @@ const gameRoutine = (e, card, cardSet) => {
           // wrong card
         } else {
           playSound(getPath(sourceType.sound, 'error.mp3'));
+          addStar(false);
           card.classList.add('inactive_wrong');
           window.gameResultErrors += 1;
           setTimeout(() => {

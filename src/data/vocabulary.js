@@ -6,15 +6,25 @@ import { getRandomIndexes } from '@utils/utils';
 import numbersSet from './sets/numbers';
 import vegetablesSet from './sets/vegetables';
 import colorsSet from './sets/colors';
+import animalsSet from './sets/animals';
+import birdsSet from './sets/birds';
+import fruitsSet from './sets/fruits';
+import berriesSet from './sets/berries';
+import fastfoodSet from './sets/fastfood';
 import defaultSet from './sets/default';
 
-const maxNumOfCards = 4;
+const maxNumOfCards = 10;
 
 export default {
   _sets: {
     numbers: numbersSet,
     vegetables: vegetablesSet,
     colors: colorsSet,
+    animals: animalsSet,
+    birds: birdsSet,
+    fruits: fruitsSet,
+    berries: berriesSet,
+    fastfood: fastfoodSet,
     default: defaultSet,
   },
   get categories() {

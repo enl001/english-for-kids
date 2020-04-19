@@ -13,7 +13,7 @@ export default [
     categoryTranslation,
     'vegetables',
     'овощи',
-    ['vegetables/potatoes-1.png'],
+    ['vegetables/pepper-1.png'],
     ['vegetables/vegetables-1.mp3', 'vegetables/vegetables-2.mp3'],
   ),
   new Card(

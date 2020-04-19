@@ -1,4 +1,7 @@
-*,*:before, *:after {box-sizing:border-box;}
+*,*:before, *:after {
+  box-sizing:border-box;
+  scroll-behavior: smooth;
+}
 
 .noSelect {
   -webkit-touch-callout: none;
@@ -9,22 +12,15 @@
   user-select: none;
 }
 
-body {  
-  max-width: $desktop-width;   
+.body {  
+  //max-width: $desktop-width; 
+
+  // margin: 0;
+  // background-repeat: no-repeat;
+  background-position: center; 
+  overflow-x: hidden;
+  max-width: $desktop-width; 
+  min-width: 320px;
   margin: 0 auto;
-
-
-  // @include media-mobile {
-  //   max-width: $mobile-width;       
-  // }
-  
-}
-.main {
-  background-color: rgb(228, 244, 255);
-  //height: 100vh;
-  //min-height: calc(100vh - 20px);
-  
-    position: relative;
-    // background: rgb(49, 118, 165);
-  
+  position: relative;
 }

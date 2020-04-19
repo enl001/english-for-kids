@@ -57,6 +57,8 @@ document.addEventListener('gameEnd', (event) => {
     }, 500);
   }, 1000);
   setTimeout(() => {
+    // clear star-panel
+    document.getElementById('star-panel').textContent = '';
     document.dispatchEvent(new CustomEvent('createMenuLayout'));
   }, 4000);
 });

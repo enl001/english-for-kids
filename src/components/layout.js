@@ -5,10 +5,11 @@ import { cardsContainerHandler, cardsMouseLeaveHandler } from '@components/cards
 
 export const createCategoryLayout = (cardSet) => {
   (async () => {
+    // fill title field with category
+    document.getElementById('title').textContent = cardSet[0].category;
+
     const entry = document.getElementById('card-layout-entry');
     const cardsContainer = document.createElement('DIV');
-    const title = document.getElementById('title');
-    title.textContent = cardSet[0].category;
     cardsContainer.classList.add('cards-layout');
     entry.appendChild(cardsContainer);
     const startResetGame = document.getElementById('start-reset-game');
@@ -22,6 +23,9 @@ export const createCategoryLayout = (cardSet) => {
 
 export const createMenuLayout = (cardSet) => {
   (async () => {
+    // fill title field with category
+    document.getElementById('title').textContent = 'ENGLISH TOGETHER';
+
     const entry = document.getElementById('card-layout-entry');
     const cardsContainer = document.createElement('DIV');
     cardsContainer.classList.add('menu-layout');

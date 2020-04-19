@@ -10,6 +10,10 @@ export const playTrainSwitchHandler = () => {
     isPlay = !isPlay;
     playTrain.classList.toggle('toggle_active');
     window.myApplicationMode = (isPlay) ? appMode.game : appMode.train;
+
+    // clear star panel
+    document.getElementById('star-panel').textContent = '';
+
     const cards = document.querySelectorAll('.card');
     const startResetGame = document.getElementById('start-reset-game');
 
@@ -80,6 +84,9 @@ export const menuButtonHandler = () => {
   const menuButton = document.getElementById('menu-button');
   menuButton.addEventListener('click', () => {
     const menu = document.querySelector('.side-menu__container');
+    document.querySelector('.main').scrollTo(0, 0);
+    menu.scrollTo(0, 0);
+    // main.scrollTo();
     menuButton.classList.toggle('active');
     menu.classList.toggle('side-menu__container_hidden');
   });
