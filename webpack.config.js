@@ -58,7 +58,7 @@ module.exports = {
   mode: 'development',
   entry: {
     main: ['@babel/polyfill', './index.js'],
-    analytics: './utils/analytics.js',
+    // analytics: './utils/analytics.js',
   },
   output: {
     filename: filename('js'),
@@ -97,8 +97,8 @@ module.exports = {
         to: path.resolve(__dirname, 'dist/assets'),
       },
       {
-        from: path.resolve(__dirname, './src/components'),
-        test: /\.html$/,
+        test: /\.(html)$/,
+        from: path.resolve(__dirname, './src/components/templates'),
         to: path.resolve(__dirname, 'dist/assets/templates'),
       },
     ]),
