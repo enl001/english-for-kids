@@ -1,7 +1,6 @@
  
   .button{
     position: absolute; 
-
     top: 15px;    
     right: 180px;
     width: 250px;
@@ -16,6 +15,10 @@
     flex-wrap: nowrap;
     text-transform: uppercase;
     opacity: 0.8;
+
+    &_activatable {
+      box-shadow: 0 0 5px 2px rgb(60, 214, 107);
+    }
 
     @extend %userselect;
     @extend %transition;
@@ -43,16 +46,21 @@
     } 
 
 
-    @include media-mobile {
+    @include media-tablet {
       padding: 0;
-      top: calc(100vh - 55px); 
+      top: calc(100vh - 60px); 
       right: initial;
-      left: 20px;
+      left: 20px;       
+    }
+
+    @include media-mobile{
       width: 100px;
       &__text {      
         display: none;
-      }    
+      }   
     }
+
+
   }
 
   .repeat {
@@ -69,20 +77,18 @@
       @extend %transition;
       display: none;
     }
-
-    @include media-mobile {      
+    @include media-tablet {      
       .button__text {      
         display: block;
       }    
     }
-  }
-  
+  }  
   .button_train-mode, .button_menu-page {
     @extend %transition;
-    top: -100vh;
-    //display:none;
-    @include media-mobile { 
-      top: calc(100vh - 70px);
+    top: -100vh; 
+    visibility: hidden;   
+    @include media-tablet { 
+      top: calc(100vh - 40px);
       right: 180px;
       left: -100vw;
       

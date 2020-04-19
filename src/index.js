@@ -98,12 +98,18 @@ document.addEventListener('click', (event) => {
   const menuIsOpen = menuButton.classList.contains('active');
   const isMenuButton = (event.target.classList.contains('hamburger')
   || event.target.classList.contains('hamburger__line'));
-
+  if (isMenuButton) {
+    console.log('MENU BUTTON');
+    window.scrollTo(0, 0);
+  }
   if (menuIsOpen && !isMenuButton) {
     const isMenuList = findElement(event.target, 'menu');
     if (isMenuList) {
       const item = findElement(event.target, 'item');
       if (item) {
+        // stop game clear star-panel
+        window.gameCardSequence.length = 0;
+        document.getElementById('star-panel').textContent = '';
         // highlighte
         const menuItemsText = document.querySelectorAll('.item__name');
         menuItemsText.forEach((itemText) => {

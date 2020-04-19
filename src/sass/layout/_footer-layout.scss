@@ -4,11 +4,12 @@
   position: fixed;
   bottom: 0;
   max-width: $desktop-width;
+  min-width: 320px;
   width: 100%;
   
 }
 .footer-layout {
-   
+  min-width: 320px;
   position: relative;
   height: 30px;
   width: 100%;    
@@ -17,8 +18,8 @@
   background-color: $card-back-gradient4-color; 
   box-shadow: 0 -15px 10px -10px #838383af;  
 
-  // @include media-mobile {
-  //   height: 80px;     
-  // }
+  @include media-tablet {
+    height: 70px;     
+  }
 
 }

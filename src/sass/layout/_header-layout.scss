@@ -3,18 +3,15 @@
   position: fixed;
   top: 0;
   max-width: $desktop-width; 
+  min-width: 320px;
   width: 100%;
   z-index: 999;
 }
 
 .header-layout {
-
-  
   position: relative;
   height: 90px;
-  width: 100%;  
-  padding-top: 10px;
-  
+  width: 100%;   
   
   @include headerGradient(
     $card-back-gradient1-color,
@@ -27,9 +24,8 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 
-  @include media-mobile {
-    padding-top: 5px;
-    height: 60px;    
+  @include media-tablet {    
+    height: 65px;    
   }
 
 }

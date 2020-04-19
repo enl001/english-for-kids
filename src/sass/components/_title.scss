@@ -9,13 +9,23 @@
   text-transform: uppercase;  
   @extend %textshadow;
   user-select: none;
-  @extend %transition; 
+  @extend %transition;   
 
 
+  @include media-tablet {
+    top: 5px;          
+  }
   @include media-mobile {
-    top: 8px;  
-    font-size: 24px; 
-    line-height: 24px;    
+    top: 15px;  
+    font-size: 20px; 
+    line-height: 20px;    
   }
 
 }
+@media (max-width:530px) {
+  .title {
+    top: 15px;  
+    font-size: 20px; 
+    line-height: 20px;  
+  }
+};

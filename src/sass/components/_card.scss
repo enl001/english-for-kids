@@ -8,9 +8,9 @@ $border-width: 8px;
   margin: 25px;  
   @include font($card-category-size, $card-category-size, $font-weight-bold);
   color: $card-text-color;
-
   animation: cardAppear 1.4s forwards;
 }
+
 .card {
   position: relative;
   height: 100%;
@@ -27,15 +27,10 @@ $border-width: 8px;
   &.card_unflip {
     animation: cardUnflip 0.275s forwards linear;
   }
-
-
-  
-
 }
 
 .card__bump-container {
   position: absolute;
-
   height: 90px;
   width: 90px;
   top: -30px;
@@ -281,19 +276,19 @@ $border-width: 8px;
 
 @keyframes cardAppear {
   0% {
-    -webkit-transform: rotate3d(0, 0, 1, 15deg) translate3d(0, -100vh, 0);
-    transform: rotate3d(0, 0, 1, 15deg) translate3d(0, -100vh, 0);
+    -webkit-transform: translate3d(0, -100vh, 0);
+    transform: translate3d(0, -100vh, 0);
   }
   40% {
-    -webkit-transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
-    transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   80% {
-    -webkit-transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0) scale3d(1, 1, 1);
-    transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0) scale3d(1, 1, 1);
+    -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   }
 }
-
+// // Animation breaks in responsive mode !!!!
 // @keyframes cardAppear {
 //   0% {
 //     transform: rotate3d(0, 0, 1, 15deg) translate3d(0, -100vh, 0);

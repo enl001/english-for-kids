@@ -72,7 +72,6 @@ const gameRoutine = (e, card, cardSet) => {
               category: window.currentCardSet[0].category,
               result: (window.gameResultErrors !== 0) ? 'failure' : 'success',
               errorsCount: window.gameResultErrors,
-
             };
             document.dispatchEvent(new CustomEvent('gameEnd', { detail: { gameResult } }));
           } else {
@@ -93,6 +92,11 @@ const gameRoutine = (e, card, cardSet) => {
           }, 500);
         }
       } else {
+        const button = document.getElementById('start-reset-game');
+        button.classList.add('button_activatable');
+        setTimeout(() => {
+          button.classList.remove('button_activatable');
+        }, 500);
         console.log('Need to start the game!');
       }
 

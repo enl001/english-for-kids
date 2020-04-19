@@ -2,12 +2,15 @@
 
   position: relative;
   margin: 0 auto;
-  padding: 0 20px;
-  //width: 90%;
+  padding: 0 20px;  
   max-width: $desktop-width;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: rgb(224, 243, 255);
+  box-shadow: 0 0 10px 5px #838383af;
   
-  // @include media-tablet {
-  //   padding: 0;        
-  // }
+  @include media-tablet{
+    padding: 0;        
+  }
 }
 

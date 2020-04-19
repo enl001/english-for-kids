@@ -3,9 +3,9 @@
   top: 15px;  
   right: 0;
   margin-right: 20px; 
-  @include media-mobile {
+  @include media-tablet {
     padding: 0;
-    top: calc(100vh - 55px);     
+    top: calc(100vh - 60px);     
   }
 }
 
